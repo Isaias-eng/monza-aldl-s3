@@ -14,27 +14,49 @@ O firmware foi dividido por responsabilidade:
 
 | Arquivo | Responsabilidade |
 |---|---|
-| `monza-aldl-s3.ino` | Inicialização e loop principal |
-| `config.h` | Pinos, portas, tempos e credenciais |
-| `telemetry.h/.cpp` | Modelo e serialização dos dados |
-| `aldl_reader.h/.cpp` | UART, sincronização, checksum e decodificação ALDL |
-| `display_manager.h/.cpp` | Inicialização e atualização do OLED |
-| `telemetry_transport.h/.cpp` | USB, Wi-Fi, HTTP, JSON e TCP |
+| `src/monza-aldl-s3.ino` | Inicialização e loop principal |
+| `src/config.h` | Pinos, portas, tempos e credenciais |
+| `src/telemetry.h/.cpp` | Modelo e serialização dos dados |
+| `src/aldl_reader.h/.cpp` | UART, sincronização, checksum e decodificação ALDL |
+| `src/display_manager.h/.cpp` | Inicialização e atualização do OLED |
+| `src/telemetry_transport.h/.cpp` | USB, Wi-Fi, HTTP, JSON e TCP |
 
 As classes recebem suas dependências por referência, evitando variáveis globais espalhadas e tornando cada subsistema isolado para futuras alterações.
 
 ## Dependências
 
-Instale pela Arduino IDE:
+O projeto usa **PlatformIO** no VS Code.
+
+Instale a extensão **PlatformIO IDE** e abra a pasta do projeto:
+
+```text
+/home/isaias/Documents/monza-aldl-s3
+```
+
+As dependências são instaladas automaticamente a partir do `platformio.ini`:
 
 - Adafruit GFX Library
 - Adafruit SSD1306
 
-Selecione uma placa ESP32-S3 compatível com o seu módulo. O projeto usa `Serial` USB a 115200 baud.
+O pacote da plataforma ESP32 também será instalado automaticamente. A configuração atual usa `esp32-s3-devkitc-1`, que é adequada para placas de desenvolvimento baseadas no ESP32-S3 WROOM-1. Se a sua placa possuir outro pinout, altere `board` no `platformio.ini`.
+
+## Compilar e gravar
+
+No terminal do VS Code:
+
+```bash
+pio run
+pio run --target upload
+pio device monitor
+```
+
+Ou use os botões de **Build**, **Upload** e **Monitor** da barra do PlatformIO.
+
+O monitor serial usa 115200 baud.
 
 ## Ligações padrão
 
-Os pinos estão em `config.h`:
+Os pinos estão em `src/config.h`:
 
 | Função | GPIO padrão |
 |---|---:|
