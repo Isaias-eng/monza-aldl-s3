@@ -14,7 +14,7 @@ O firmware foi dividido por responsabilidade:
 
 | Arquivo | Responsabilidade |
 |---|---|
-| `src/monza-aldl-s3.ino` | Inicialização e loop principal |
+| `src/main.cpp` | Inicialização e loop principal |
 | `src/config.h` | Pinos, portas, tempos e credenciais |
 | `src/telemetry.h/.cpp` | Modelo e serialização dos dados |
 | `src/aldl_reader.h/.cpp` | UART, sincronização, checksum e decodificação ALDL |
